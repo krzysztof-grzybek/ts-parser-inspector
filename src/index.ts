@@ -1,62 +1,33 @@
 import * as ts from "typescript";
 
-function createCompilerHost(fileName, fileContent): ts.CompilerHost {
-  return {
-    fileExists: () => true,
-    getCanonicalFileName: (filename: string) => filename,
-    getCurrentDirectory: () => '',
-    getDefaultLibFileName: () => 'lib.d.ts',
-    getDirectories: (_path: string) => [],
-    getNewLine: () => '\n',
-    getSourceFile: (filenameToGet: string) => {
-      return filenameToGet === fileName ? ts.createSourceFile(filenameToGet, fileContent, ts.ScriptTarget.ES5, true) : undefined;
-    },
-    readFile: () => undefined,
-    useCaseSensitiveFileNames: () => true,
-    writeFile: () => undefined
-  };
+(<any>window).ts = ts;
+let  scanner = ts.createScanner(ts.ScriptTarget.ES5, true, ts.LanguageVariant.Standard, '' );
+
+addEventListeners();
+
+function addEventListeners() {
+  document.getElementById('input-code').addEventListener('input', onTextareaInput);
+  document.getElementById('scan-btn').addEventListener('click', onScanBtnClick);
 }
 
-function compile(options: ts.CompilerOptions, fileContent): void {
-  const fileNameMain = 'main.ts';
-
-  const compilerHost: ts.CompilerHost = createCompilerHost(fileNameMain, fileContent);
-  let program = ts.createProgram([fileNameMain], options, compilerHost);
-  let emitResult = program.emit();
-
-  let allDiagnostics = ts
-    .getPreEmitDiagnostics(program)
-    .concat(emitResult.diagnostics);
-
-  allDiagnostics.forEach(diagnostic => {
-    if (diagnostic.file) {
-      let { line, character } = diagnostic.file.getLineAndCharacterOfPosition(
-        diagnostic.start!
-      );
-      let message = ts.flattenDiagnosticMessageText(
-        diagnostic.messageText,
-        "\n"
-      );
-      console.log(
-        `${diagnostic.file.fileName} (${line + 1},${character + 1}): ${message}`
-      );
-    } else {
-      console.log(
-        `${ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")}`
-      );
-    }
-  });
-
-  let exitCode = emitResult.emitSkipped ? 1 : 0;
-  console.log(`Process exiting with code '${exitCode}'.`);
-}
-
-document.getElementById('input-code').addEventListener('input', (e) => {
+function onTextareaInput(e) {
   console.clear();
-  compile({
-    noEmitOnError: true,
-    noImplicitAny: true,
-    target: ts.ScriptTarget.ES5,
-    module: ts.ModuleKind.CommonJS
-  }, (<HTMLTextAreaElement>e.target).value);
-});
+  scanner = ts.createScanner(
+    ts.ScriptTarget.ES5,
+    true,
+    ts.LanguageVariant.Standard,
+    (<HTMLTextAreaElement>e.target).value
+  );
+}
+
+function onScanBtnClick() {
+  const tokenKind = ts.SyntaxKind[scanner.scan()];
+  const tokenValue = scanner.getTokenValue();
+  const tokenText = scanner.getTokenText();
+
+  const startPos = scanner.getStartPos();
+  const textPos = scanner.getTextPos();
+  const tokenPos = scanner.getTokenPos();
+
+  console.log({ tokenKind, tokenValue, lexeme: tokenText, startPos, textPos, tokenPos })
+}
