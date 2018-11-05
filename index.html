@@ -4,13 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/codemirror.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/theme/dracula.min.css">
+    <style>
+        .token {
+            border: 1px solid black;
+        }
+        .token-highlight {
+            background-color: red;
+        }
+    </style>
+    <title>Ts scanner inspector</title>
 </head>
 <body>
     <div>
         <button id="scan-btn">Scan</button>
     </div>
-    <textarea name="" id="input-code" cols="60" rows="100"></textarea>
+    <div id="editor" style="width: 50%;"></div>
+    <div id="token-list" style="width: 50%;"></div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/codemirror.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/mode/javascript/javascript.min.js"></script>
     <script src="./dist/main.bundle.js"></script>
 </body>
 </html>
