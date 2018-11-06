@@ -2,11 +2,14 @@ import * as ts from 'typescript';
 import { Scanner } from './scanner';
 import { TokenList } from './token-list';
 
+import '../css/styles.scss';
+
 (<any>window).ts = ts;
 
 const editor = createEditor();
 const scanner = new Scanner(editor.getValue());
 const tokenList = new TokenList(document.getElementById('token-list'));
+let prevMarker;
 addEventListeners();
 
 function createEditor() {
@@ -23,14 +26,18 @@ function createEditor() {
 function addEventListeners() {
   editor.on('change', onChange);
   document.getElementById('scan-btn').addEventListener('click', onScanBtnClick);
+  document.getElementById('reset-btn').addEventListener('click', onResetBtnClick);
 }
 
 function onChange(e) {
-  console.clear();
   scanner.reset(editor.getValue());
+  tokenList.clear();
+  if (prevMarker) {
+    prevMarker.clear();
+  }
 }
 
-let prevMarker;
+
 function onScanBtnClick() {
   const token = scanner.scan();
   tokenList.add(token);
@@ -41,6 +48,14 @@ function onScanBtnClick() {
   }
 
   prevMarker = editor.markText(a, b, {className: 'token-highlight'});
+}
+
+function onResetBtnClick() {
+  scanner.reset(editor.getValue());
+  tokenList.clear();
+  if (prevMarker) {
+    prevMarker.clear();
+  }
 }
 
 

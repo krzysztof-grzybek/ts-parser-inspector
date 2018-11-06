@@ -1,0 +1,26 @@
+$button-raised-background: #bd93f9;
+@import '../node_modules/materialize-css/sass/materialize';
+
+.token-highlight {
+  background-color: #6d6d6d;
+}
+
+.left-col.left-col {
+  padding: 0;
+}
+.right-col.right-col {
+  padding-top: 10px;
+}
+
+.token {
+  line-height: 15px;
+}
+.key {
+  display: inline-block;
+  width: 113px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.CodeMirror { min-height: 100vh }

@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const ROOT = path.resolve( __dirname, 'src' );
 const DESTINATION = path.resolve( __dirname, 'dist' );
@@ -10,7 +11,7 @@ module.exports = {
     entry: {
         'main': './index.ts'
     },
-    
+
     output: {
         filename: '[name].bundle.js',
         path: DESTINATION
@@ -26,6 +27,20 @@ module.exports = {
 
     module: {
         rules: [
+          {
+            test: /\.(scss)$/,
+            use: ExtractTextPlugin.extract({
+              use: [
+                {
+                  loader: 'css-loader',
+                  options: {
+                    minimize: true
+                  },
+                },
+                'sass-loader'
+              ]
+            })
+          },
             /****************
             * PRE-LOADERS
             *****************/
@@ -51,6 +66,10 @@ module.exports = {
             }
         ]
     },
+
+    plugins: [
+    new ExtractTextPlugin('styles.css'),
+    ],
 
     devtool: 'cheap-module-source-map',
 
