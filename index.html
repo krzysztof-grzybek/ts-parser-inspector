@@ -10,26 +10,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/dist/styles.css">
 
-    <title>Ts scanner inspector</title>
+    <title>Scanner inspector</title>
 </head>
 <body>
-<div class="row flex">
-    <div id="editor" class="col s7 left-col">
-        <div class="header">
-            <a id="scan-btn" class="waves-effect waves-light btn scan-btn"><i class="material-icons left">play_arrow</i>Scan</a>
-            <a id="reset-btn" class="waves-effect waves-light btn reset-btn"><i class="material-icons left">settings_backup_restore</i>Reset</a>
+    <div class="row flex">
+        <div id="editor" class="col s7 left-col">
+            <div class="header">
+                <a id="scan-btn" class="waves-effect waves-light btn scan-btn"><i class="material-icons left">play_arrow</i>Scan</a>
+                <a id="reset-btn" class="waves-effect waves-light btn reset-btn"><i class="material-icons left">settings_backup_restore</i>Reset</a>
+            </div>
+        </div>
+        <div class="col s5 right-col">
+            <div>
+                <ul id="token-list" class="collection with-header"></ul>
+            </div>
         </div>
     </div>
-    <div class="col s5 right-col">
-        <div>
-            <ul id="token-list" class="collection with-header"></ul>
-        </div>
-    </div>
-
-
-</div>
-
-
     <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/codemirror.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/mode/javascript/javascript.min.js"></script>
     <script src="./dist/main.bundle.js"></script>

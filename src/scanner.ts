@@ -36,7 +36,6 @@ class Scanner {
   }
 
   posToLineAndPos(pos: number) {
-    // internal
     const lineStarts = (<any>ts).computeLineStarts(this.text);
     const lineAndPos = (<any>ts).computeLineAndCharacterOfPosition(lineStarts, pos);
     return {

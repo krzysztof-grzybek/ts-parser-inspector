@@ -12,24 +12,22 @@ class TokenList {
 
   add(tokenData: TokenData) {
     const tokenEl = document.createElement('li');
-    tokenEl.classList.add('collection-item');
+    tokenEl.classList.add('token-item');
     tokenEl.innerHTML = `
-      <div>
-        <p class="token">
-          <span class="key">token_kind: </span><code class="value">${tokenData.tokenKind}</code><br>
-          <span class="key">token_text: </span><code class="value">${tokenData.tokenText}</code><br>
-          <span class="key">start_pos: </span><code class="value">${tokenData.startPos}</code><br>
-          <span class="key">text_pos: </span><code class="value">${tokenData.textPos}</code><br>
-          <span class="key">token_pos: </span><code class="value">${tokenData.tokenPos}</code>
-        </p>
-      </div>
+      <p class="token">
+        <span class="key">token_kind: </span><code class="value">${tokenData.tokenKind}</code><br>
+        <span class="key">token_text: </span><code class="value">${tokenData.tokenText}</code><br>
+        <span class="key">start_pos: </span><code class="value">${tokenData.startPos}</code><br>
+        <span class="key">text_pos: </span><code class="value">${tokenData.textPos}</code><br>
+        <span class="key">token_pos: </span><code class="value">${tokenData.tokenPos}</code>
+      </p>
     `;
 
     this.rootEl.prepend(tokenEl);
   }
 
   clear() {
-    const tokens = this.rootEl.querySelectorAll('.collection-item');
+    const tokens = this.rootEl.querySelectorAll('.token-item');
     Array.from(tokens).forEach(tokenEl => {
       tokenEl.remove();
     });
