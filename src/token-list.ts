@@ -16,12 +16,11 @@ class TokenList {
     tokenEl.innerHTML = `
       <div>
         <p class="token">
-          <span class="key">token_kind: </span><span class="value">${tokenData.tokenKind}</span><br>
-          <span class="key">token_value: </span><span class="value">${tokenData.tokenValue}</span><br>
-          <span class="key">token_text: </span><span class="value">${tokenData.tokenText}</span><br>
-          <span class="key">start_pos: </span><span class="value">${tokenData.startPos}</span><br>
-          <span class="key">text_pos: </span><span class="value">${tokenData.textPos}</span><br>
-          <span class="key">token_pos: </span><span class="value">${tokenData.tokenPos}</span>
+          <span class="key">token_kind: </span><code class="value">${tokenData.tokenKind}</code><br>
+          <span class="key">token_text: </span><code class="value">${tokenData.tokenText}</code><br>
+          <span class="key">start_pos: </span><code class="value">${tokenData.startPos}</code><br>
+          <span class="key">text_pos: </span><code class="value">${tokenData.textPos}</code><br>
+          <span class="key">token_pos: </span><code class="value">${tokenData.tokenPos}</code>
         </p>
       </div>
     `;

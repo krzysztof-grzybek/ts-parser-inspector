@@ -13,15 +13,14 @@
     <title>Ts scanner inspector</title>
 </head>
 <body>
-<div class="row">
-    <div class="col s6 left-col">
-        <div id="editor"></div>
-    </div>
-    <div class="col s6 right-col">
-        <div>
-            <a id="scan-btn" class="waves-effect waves-light btn"><i class="material-icons left">play_arrow</i>Scan</a>
-            <a id="reset-btn" class="waves-effect waves-light btn"><i class="material-icons left">settings_backup_restore</i>Reset</a>
+<div class="row flex">
+    <div id="editor" class="col s7 left-col">
+        <div class="header">
+            <a id="scan-btn" class="waves-effect waves-light btn scan-btn"><i class="material-icons left">play_arrow</i>Scan</a>
+            <a id="reset-btn" class="waves-effect waves-light btn reset-btn"><i class="material-icons left">settings_backup_restore</i>Reset</a>
         </div>
+    </div>
+    <div class="col s5 right-col">
         <div>
             <ul id="token-list" class="collection with-header"></ul>
         </div>
