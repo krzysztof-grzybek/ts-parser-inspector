@@ -23,15 +23,23 @@ html, body {
 }
 
 .left-col.left-col {
-  padding: 0;
   position: relative;
+  padding-top: 10px;
 }
 .right-col.right-col {
   padding-top: 10px;
 }
 
+.token-item {
+  transition: background-color 100ms ease-in-out;
+  &:hover {
+    background-color: #7d7c7d36;
+  }
+}
 .token {
+  padding-left: 10px;
   line-height: 15px;
+  cursor: default;
 }
 .key {
   display: inline-block;

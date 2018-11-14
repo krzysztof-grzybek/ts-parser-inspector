@@ -1,40 +1,41 @@
 import { Editor } from './editor';
-import { Scanner } from './scanner';
 import { TokenList } from './token-list';
+import { Compiler } from './compiler';
 
 class App {
-  constructor(private editor: Editor, private scanner: Scanner, private tokenList: TokenList) {
+  constructor(private editor: Editor, private compiler: Compiler, private tokenList: TokenList) {
 
   }
 
   init() {
     this.addEventListeners();
+    this.resetState();
   }
 
   addEventListeners() {
     this.editor.on('change', this.onEditorChange.bind(this));
-    document.getElementById('scan-btn').addEventListener('click', this.onScanBtnClick.bind(this));
-    document.getElementById('reset-btn').addEventListener('click', this.onResetBtnClick.bind(this));
+    this.tokenList.onTokenHover(this.onTokenMouseEnter.bind(this), this.onTokenMouseLeave.bind(this));
   }
 
   onEditorChange(e) {
-    this.scanner.reset(this.editor.getValue());
-    this.tokenList.clear();
-    this.editor.clearMarks();
+    this.resetState();
   }
 
+  resetState() {
+    const tokenList: any = this.compiler.compile(this.editor.getValue());
+    this.tokenList.clear();
+    tokenList.forEach(token => {
+      this.tokenList.add(token);
+    });
+  }
 
-  onScanBtnClick() {
-    const token = this.scanner.scan();
-    this.tokenList.add(token);
-    const a = this.scanner.posToLineAndPos(token.tokenPos);
-    const b = this.scanner.posToLineAndPos(token.textPos);
+  onTokenMouseEnter(e) {
+    const a = this.compiler.posToLineAndPos(e.tokenPos);
+    const b = this.compiler.posToLineAndPos(e.textPos);
     this.editor.markText(a, b);
   }
 
-  onResetBtnClick() {
-    this.scanner.reset(this.editor.getValue());
-    this.tokenList.clear();
+  onTokenMouseLeave() {
     this.editor.clearMarks();
   }
 }

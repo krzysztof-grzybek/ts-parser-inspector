@@ -1,19 +1,17 @@
 import * as ts from 'typescript';
-import { Scanner } from './scanner';
 import { Editor } from './editor';
 import { TokenList } from './token-list';
+import { Compiler } from './compiler';
 import { App } from './app';
 
 import '../css/styles.scss';
 
 (<any>window).ts = ts;
 
-const defaultCode = `
-  const a = 'tsParserInspector';
-`;
+const defaultCode = 'const a = `asdf${sdfwes}asdffdwef`;';
 const editor = new Editor(defaultCode);
-const scanner = new Scanner(editor.getValue());
+const compiler = new Compiler();
 const tokenList = new TokenList(document.getElementById('token-list'));
 
-const app = new App(editor, scanner, tokenList);
+const app = new App(editor, compiler, tokenList);
 app.init();
