@@ -27,6 +27,7 @@ class Compiler {
   }
 
   compile(fileContent: string): any[] {
+    this.tokenList = [];
     this.text = fileContent;
     const options = {
       noEmitOnError: true,

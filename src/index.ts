@@ -1,4 +1,3 @@
-import * as ts from 'typescript';
 import { Editor } from './editor';
 import { TokenList } from './token-list';
 import { Compiler } from './compiler';
@@ -6,10 +5,19 @@ import { App } from './app';
 
 import '../css/styles.scss';
 
-(<any>window).ts = ts;
+const DEFAULT_CODE = `
+class MyCustomClass {
+  constructor(private something: string) {
+    this.init();
+  }
+  
+  init() {
+    this.myString = 'asdf';
+  }
+}
+`;
 
-const defaultCode = 'const a = `asdf${sdfwes}asdffdwef`;';
-const editor = new Editor(defaultCode);
+const editor = new Editor(DEFAULT_CODE);
 const compiler = new Compiler();
 const tokenList = new TokenList(document.getElementById('token-list'));
 

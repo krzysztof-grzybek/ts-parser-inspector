@@ -1,9 +1,14 @@
+import * as CodeMirror from 'codemirror';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/dracula.css';
+
 class Editor {
-  private del: any; // TODO: provide proper type
-  private currentMark: any; // TODO: provider proper type
+  private del: CodeMirror.Editor;
+  private currentMark: CodeMirror.TextMarker;
 
   constructor(defaultCode: string) {
-    this.del = (window as any).CodeMirror(document.getElementById('editor'), {
+    this.del = CodeMirror(document.getElementById('editor'), {
       value: defaultCode,
       gutters: ['CodeMirror-lint-markers'],
       mode: 'javascript',
@@ -16,13 +21,15 @@ class Editor {
     return this.del.getValue();
   }
 
-  on(event: string, handler: Function) {
+  // TODO: provide proper type
+  on(event: CodeMirror.DOMEvent | 'change', handler: (editor: CodeMirror.Editor) => void) {
     this.del.on(event, handler);
   }
 
   markText(a: { line: number, ch: number }, b: { line: number, ch: number }) {
     this.clearMarks();
-    this.currentMark = this.del.markText(a, b, { className: 'token-highlight' });
+    // TODO provide proper type
+    this.currentMark = (<any>this.del).markText(a, b, { className: 'token-highlight' });
   }
 
   clearMarks() {

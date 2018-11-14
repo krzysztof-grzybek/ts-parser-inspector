@@ -30,6 +30,7 @@ class TokenList {
       </p>
     `;
 
+    // TODO: remove event listeneres on DOM nodes remove
     tokenEl.addEventListener('mouseenter', (e) => {
       if (this.onTokenMouseEnter) {
         this.onTokenMouseEnter(tokenData);
