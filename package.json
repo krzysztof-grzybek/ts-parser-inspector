@@ -40,6 +40,6 @@
   "dependencies": {
     "codemirror": "^5.41.0",
     "materialize-css": "^1.0.0-rc.2",
-    "typescript": "^3.1.6"
+    "typescript": "https://github.com/krzysztof-grzybek/TypeScript.git#token-plug"
   }
 }
