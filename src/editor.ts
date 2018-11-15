@@ -21,15 +21,15 @@ class Editor {
     return this.del.getValue();
   }
 
-  // TODO: provide proper type
-  on(event: CodeMirror.DOMEvent | 'change', handler: (editor: CodeMirror.Editor) => void) {
+  on(event: string, handler: (editor: CodeMirror.Editor) => void) {
     this.del.on(event, handler);
   }
 
   markText(a: { line: number, ch: number }, b: { line: number, ch: number }) {
     this.clearMarks();
-    // TODO provide proper type
-    this.currentMark = (<any>this.del).markText(a, b, { className: 'token-highlight' });
+    // TODO: remove type assertion after CodeMirror type fix
+    // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/30555
+    this.currentMark = (this.del as any).markText(a, b, { className: 'token-highlight' });
   }
 
   clearMarks() {
