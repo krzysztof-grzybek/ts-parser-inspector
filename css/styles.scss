@@ -1,60 +1,7 @@
-//$button-raised-background: #bd93f9;
 @import '../node_modules/materialize-css/sass/materialize';
 
-html, body {
-  height: 100%;
-  background-color: #282a36;
-}
-.flex {
-  display: flex;
-  min-height: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.scan-btn, .reset-btn {
-  margin-bottom: 5px;
-}
-.header {
-  padding: 15px;
-}
-.token-highlight {
-  background-color: #6d6d6d;
-}
-
-.left-col.left-col {
-  position: relative;
-  padding-top: 10px;
-}
-.right-col.right-col {
-  padding-top: 10px;
-}
-
-.token-item {
-  transition: background-color 100ms ease-in-out;
-  &:hover {
-    background-color: #7d7c7d36;
-  }
-}
-.token {
-  padding-left: 10px;
-  line-height: 15px;
-  cursor: default;
-}
-.key {
-  display: inline-block;
-  width: 113px;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 12px;
-}
-
-.editor {
-  height: 100%;
-}
-.CodeMirror {
-  height: 100%;
-}
+$bg: #282a36;
+$col-padding: 0.75rem;
 
 @keyframes slide {
   from {
@@ -67,8 +14,88 @@ html, body {
   }
 }
 
-.collection {
-  border: 0;
+@mixin scrollbar {
+  &::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+
+    background-color: $bg;
+  }
+
+  &::-webkit-scrollbar
+  {
+    width: 5px;
+    background-color: $bg;
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #50fa7b;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  background-color: $bg;
+}
+
+.row {
+  margin-bottom: 0;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 100%;
+}
+
+.token-highlight {
+  background-color: #6d6d6d;
+}
+
+.left-col.left-col {
+  position: relative;
+  padding-top: 10px;
+  overflow: auto;
+
+  @include scrollbar;
+}
+.left-col__inner {
+  position: absolute;
+  left: $col-padding;
+  right: $col-padding;
+}
+
+.editor {
+  height: 100%;
+}
+
+.CodeMirror {
+  height: auto;
+}
+
+.right-col.right-col {
+  position: relative;
+  padding-top: 0;
+  overflow: auto;
+
+  @include scrollbar;
+}
+
+.right-col__inner {
+  position: absolute;
+  height: 100%;
+  left: $col-padding;
+  right: $col-padding;
+}
+
+.token-list {
+  margin: 0;
 }
 
 .token-item {
@@ -84,4 +111,23 @@ html, body {
   border: 0;
   border-bottom: 1px solid #d0d0d0;
   color: #d0d0d0;
+  transition: background-color 100ms ease-in-out;
+
+  &:hover {
+    background-color: #7d7c7d36;
+  }
+}
+
+.token {
+  padding-left: 10px;
+  line-height: 15px;
+  cursor: default;
+}
+
+.key {
+  display: inline-block;
+  width: 113px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
 }

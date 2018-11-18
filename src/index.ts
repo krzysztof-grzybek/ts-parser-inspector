@@ -5,8 +5,8 @@ import { App } from './app';
 
 import '../css/styles.scss';
 
-const DEFAULT_CODE = `
-class MyCustomClass {
+const DEFAULT_CODE =
+`class MyCustomClass {
   constructor(private something: string) {
     this.init();
   }

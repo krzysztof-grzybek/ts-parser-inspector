@@ -13,7 +13,8 @@ class Editor {
       gutters: ['CodeMirror-lint-markers'],
       mode: 'javascript',
       theme: 'dracula',
-      lineNumbers: true
+      lineNumbers: true,
+      viewportMargin: Infinity,
     });
   }
 

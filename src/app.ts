@@ -1,10 +1,9 @@
 import { Editor } from './editor';
 import { TokenList } from './token-list';
-import { Compiler } from './compiler';
+import { Compiler, Token } from './compiler';
 
 class App {
   constructor(private editor: Editor, private compiler: Compiler, private tokenList: TokenList) {
-
   }
 
   init() {
@@ -22,7 +21,7 @@ class App {
   }
 
   resetState() {
-    const tokenList: any = this.compiler.compile(this.editor.getValue());
+    const tokenList: Token[] = this.compiler.compile(this.editor.getValue());
     this.tokenList.clear();
     tokenList.forEach(token => {
       this.tokenList.add(token);

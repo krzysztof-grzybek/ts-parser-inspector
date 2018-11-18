@@ -1,9 +1,18 @@
 import * as ts from 'typescript';
 const debug = false;
 
+interface Token {
+  tokenKind: string,
+  tokenValue: string,
+  tokenText: string,
+  startPos: number,
+  textPos: number,
+  tokenPos: number,
+};
+
 class Compiler {
   private text: string;
-  public tokenList = [];
+  public tokenList: Token[] = [];
 
   constructor() {
     (<any>ts).onNextToken = this.pushTokenIfNeeded.bind(this);
@@ -26,7 +35,7 @@ class Compiler {
     };
   }
 
-  compile(fileContent: string): any[] {
+  compile(fileContent: string): Token[] {
     this.tokenList = [];
     this.text = fileContent;
     const options = {
@@ -38,7 +47,6 @@ class Compiler {
     };
     const fileNameMain = 'main.ts';
 
-    (<any>window).tokenList = [];
     const compilerHost: ts.CompilerHost = this.createCompilerHost(fileNameMain, fileContent);
     let program = ts.createProgram([fileNameMain], options, compilerHost);
     let emitResult = program.emit();
@@ -79,6 +87,7 @@ class Compiler {
   }
 
   posToLineAndPos(pos: number) {
+    // internal ts methods
     const lineStarts = (<any>ts).computeLineStarts(this.text);
     const lineAndPos = (<any>ts).computeLineAndCharacterOfPosition(lineStarts, pos);
     return {
@@ -95,7 +104,7 @@ class Compiler {
     }
   }
 
-  getFullToken(scanner, token) {
+  getFullToken(scanner, token): Token {
     return {
       tokenKind: ts.SyntaxKind[token],
       tokenValue: scanner.getTokenValue(),
@@ -107,4 +116,4 @@ class Compiler {
   }
 }
 
-export { Compiler }
+export { Compiler, Token }
