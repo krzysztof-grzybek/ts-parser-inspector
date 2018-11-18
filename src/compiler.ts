@@ -10,6 +10,69 @@ interface Token {
   tokenPos: number,
 };
 
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstAssignment] = "EqualsToken";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastAssignment] = "CaretEqualsToken";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstCompoundAssignment] = "PlusEqualsToken";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastCompoundAssignment] = "CaretEqualsToken";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstReservedWord] = "BreakKeyword";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastReservedWord] = "WithKeyword";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstKeyword] = "BreakKeyword";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastKeyword] = "OfKeyword";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstFutureReservedWord] = "ImplementsKeyword";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastFutureReservedWord] = "YieldKeyword";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstTypeNode] = "TypePredicate";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastTypeNode] = "ImportType";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstPunctuation] = "OpenBraceToken";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastPunctuation] = "CaretEqualsToken";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstToken] = "Unknown";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastToken] = "LastKeyword";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstTriviaToken] = "SingleLineCommentTrivia";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastTriviaToken] = "ConflictMarkerTrivia";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstLiteralToken] = "NumericLiteral";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastLiteralToken] = "NoSubstitutionTemplateLiteral";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstTemplateToken] = "NoSubstitutionTemplateLiteral";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastTemplateToken] = "TemplateTail";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstBinaryOperator] = "LessThanToken";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastBinaryOperator] = "CaretEqualsToken";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstNode] = "QualifiedName";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstJSDocNode] = "JSDocTypeExpression";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastJSDocNode] = "JSDocPropertyTag";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstJSDocTagNode] = "JSDocTag";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastJSDocTagNode] = "JSDocPropertyTag";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.FirstContextualKeyword] = "AbstractKeyword";
+// @ts-ignore
+ts.SyntaxKind[ts.SyntaxKind.LastContextualKeyword] = "OfKeyword";
+
 class Compiler {
   private text: string;
   public tokenList: Token[] = [];
