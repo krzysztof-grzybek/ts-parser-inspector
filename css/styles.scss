@@ -26,6 +26,7 @@ $col-padding: 0.75rem;
   &::-webkit-scrollbar
   {
     width: 5px;
+    height: 5px;
     background-color: $bg;
   }
 
@@ -77,6 +78,10 @@ body {
 
 .CodeMirror {
   height: auto;
+}
+
+.CodeMirror-hscrollbar {
+  @include scrollbar;
 }
 
 .right-col.right-col {
