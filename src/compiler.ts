@@ -98,10 +98,13 @@ class Compiler {
 
   pushTokenIfNeeded(scanner, currToken) {
     const token = this.getFullToken(scanner, currToken);
-    const isTokenOnList = this.tokenList.some(t => t.tokenPos === token.tokenPos);
-    if (!isTokenOnList) {
-      this.tokenList.unshift(token);
+    const existingTokenIndex = this.tokenList.findIndex(t => t.tokenPos === token.tokenPos);
+
+    if (existingTokenIndex !== -1) {
+      this.tokenList.splice(existingTokenIndex, 1);
     }
+
+    this.tokenList.unshift(token);
   }
 
   getFullToken(scanner, token): Token {
